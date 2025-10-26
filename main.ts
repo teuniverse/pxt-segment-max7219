@@ -43,11 +43,7 @@ namespace Segment_MAX7219 {
     pins.digitalWritePin(MAX7219_CS, 1);
   }
 
-  /**
-   * Initialize
-   */
-  //% block
-  export function initialize(): void {
+  function initialize(): void {
     pins.digitalWritePin(MAX7219_CS, 1);
 
     output(0x0f, 0x00); //display test register - test mode off
@@ -56,6 +52,7 @@ namespace Segment_MAX7219 {
     output(0x0a, 0x08); //intensity register - max brightness
     output(0x09, 0xff); //decode mode register - CodeB decode all digits
   }
+  initialize();
 
   /**
    * Display
