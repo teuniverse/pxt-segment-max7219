@@ -81,7 +81,7 @@ namespace Segment_MAX7219 {
   /**
    * Set brightness
    */
-  //% block="set segment brightness to: brightness $brightness
+  //% block="set segment brightness to: $brightness"
   //% brightness.min=0 brightness.max=15
   export function setBrightness(brightness: number) {
     if (brightness >= 0 && brightness <= 0x0f) {

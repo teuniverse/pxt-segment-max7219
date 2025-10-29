@@ -1,6 +1,6 @@
 {
   "name": "pxt-segment-max7219",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "MakeCode extension for Segment Display Module - 8 Character - Decimal - MAX7219",
   "license": "MIT",
   "dependencies": {
