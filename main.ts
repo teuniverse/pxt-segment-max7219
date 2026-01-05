@@ -208,6 +208,36 @@ namespace Segment_MAX7219 {
     displayText(display);
   }
 
+  function timeOffsetToHourMinutes(offset: number): string {
+    let sign = offset >= 0.0 ? 1.0 : -1.0;
+    let totalMinutes = Math.idiv(Math.abs(offset) * 60, 1);
+
+    let dot = 128;
+    let hours =
+      (totalMinutes / 60 / 10).toString() +
+      String.fromCharCode("0".charCodeAt(0) + ((totalMinutes / 60) % 10) + dot);
+    let minutes =
+      ((totalMinutes % 60) / 10).toString() +
+      ((totalMinutes % 60) % 10).toString();
+    return (sign < 0.0 ? "-" : "") + hours + minutes;
+  }
+
+  /**
+   * Display coordinate
+   */
+  //% block
+  export function displayTimezone(utcOffset: number, dstOffset: number): void {
+    let text = "TZ " + timeOffsetToHourMinutes(utcOffset);
+    if (dstOffset != 0.0) {
+      // Make last dot visible, this means that there is a daylight saving time offset
+      let dot = 128;
+      text =
+        text.slice(0, text.length - 1) +
+        String.fromCharCode(text.charCodeAt(text.length - 1) + dot);
+    }
+    displayText(text);
+  }
+
   /**
    * Set brightness
    */
