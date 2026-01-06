@@ -211,22 +211,26 @@ namespace Segment_MAX7219 {
   function timeOffsetToHourMinutes(offset: number): string {
     let sign = offset >= 0.0 ? 1.0 : -1.0;
     let totalMinutes = Math.idiv(Math.abs(offset) * 60, 1);
+    let hours = Math.idiv(totalMinutes / 60, 1);
+    let minutes = totalMinutes % 60;
 
     let dot = 128;
-    let hours =
-      (totalMinutes / 60 / 10).toString() +
-      String.fromCharCode("0".charCodeAt(0) + ((totalMinutes / 60) % 10) + dot);
-    let minutes =
-      ((totalMinutes % 60) / 10).toString() +
-      ((totalMinutes % 60) % 10).toString();
-    return (sign < 0.0 ? "-" : "") + hours + minutes;
+    let hoursStr =
+      (hours >= 10 ? Math.idiv(hours / 10, 1).toString() : "") +
+      String.fromCharCode("0".charCodeAt(0) + (hours % 10) + dot);
+    let minutesStr =
+      Math.idiv(minutes / 10, 1).toString() + (minutes % 10).toString();
+    return (sign < 0.0 ? "-" : "") + hoursStr + minutesStr;
   }
 
   /**
-   * Display coordinate
+   * Display timezone
    */
   //% block
-  export function displayTimezone(utcOffset: number, dstOffset: number): void {
+  export function testDisplayTimezone(
+    utcOffset: number,
+    dstOffset: number
+  ): void {
     let text = "TZ " + timeOffsetToHourMinutes(utcOffset);
     if (dstOffset != 0.0) {
       // Make last dot visible, this means that there is a daylight saving time offset
