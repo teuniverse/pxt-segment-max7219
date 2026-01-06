@@ -227,10 +227,7 @@ namespace Segment_MAX7219 {
    * Display timezone
    */
   //% block
-  export function testDisplayTimezone(
-    utcOffset: number,
-    dstOffset: number
-  ): void {
+  export function displayTimezone(utcOffset: number, dstOffset: number): void {
     let text = "TZ " + timeOffsetToHourMinutes(utcOffset);
     if (dstOffset != 0.0) {
       // Make last dot visible, this means that there is a daylight saving time offset
